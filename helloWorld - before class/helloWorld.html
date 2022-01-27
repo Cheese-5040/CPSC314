@@ -10,22 +10,26 @@
     <script src="js/three.min.js"></script>
     <script src="js/WebGL.js"></script>
     <script src="js/OrbitControls.js"></script>
+    <!-- this is vertex shader , make gl_position a vector of 4 dimensions-->
     <script id="vertexShader" type="x-shader/x-vertex">
       #version 300 es
+      out float height; 
       void main() {
+        height = position.y;
         gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
       }
     </script>
+      <!-- pass the float height out from vertex shader to fragment shader  -->
+    <!-- take in the height and use it to multiply the colour --> 
     <script id="fragmentShader" type="x-shader/x-fragment">
       #version 300 es
       
       precision highp float;
       precision highp int;
-
       out vec4 out_FragColor;
-      
+      in float height;  
       void main() {
-        vec3 color = 0.9 * vec3(1.0); //RGB
+        vec3 color = 0.2 * height* vec3(1.0, 0.0, 1.0); //RGB
         out_FragColor = vec4(color,1.0);
       }
       </script>
