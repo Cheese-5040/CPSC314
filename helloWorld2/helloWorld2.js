@@ -31,19 +31,19 @@ floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
 floorTexture.repeat.set(1,1);
 
 // version 1
-const floorMaterial = new THREE.MeshBasicMaterial({ 
-  map: floorTexture, 
-  side: THREE.DoubleSide
-});
+// const floorMaterial = new THREE.MeshBasicMaterial({ 
+//   map: floorTexture, 
+//   side: THREE.DoubleSide
+// });
 
 // version 2: Simple Shader Material
-// const floorMaterial = new THREE.ShaderMaterial( {
-//   side: THREE.DoubleSide,
-//   vertexShader: document.getElementById('vertexShader').textContent,
-//   fragmentShader: document.getElementById('fragmentShader').textContent,
-//   uniforms: {
-//       colorMap: { type: "t", value: floorTexture }}
-// } );
+const floorMaterial = new THREE.ShaderMaterial( {
+  side: THREE.DoubleSide,
+  vertexShader: document.getElementById('vertexShader').textContent,
+  fragmentShader: document.getElementById('fragmentShader').textContent,
+  uniforms: {
+      colorMap: { type: "t", value: floorTexture }}
+} );
 					  
 
 const floorGeometry = new THREE.PlaneBufferGeometry(30, 30);
